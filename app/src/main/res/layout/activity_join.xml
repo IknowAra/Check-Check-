@@ -4,49 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="70dp"
+    android:paddingBottom="70dp"
+    android:paddingLeft="50dp"
+    android:paddingRight="50dp"
     >
 
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/text_join"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+
         android:text="회원가입"
         android:textColor="#000000"
         android:textSize="30dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/et_id"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintBottom_toBottomOf="@id/user_id"
+        app:layout_constraintVertical_bias="0.2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.651" />
+        app:layout_constraintVertical_chainStyle="spread" />
 
     <EditText
-        android:id="@+id/et_id"
-        android:layout_width="280dp"
+        android:id="@+id/user_id"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@color/colorPrimary"
         android:drawableStart="@drawable/ic_baseline_email_24"
         android:drawableLeft="@drawable/ic_baseline_email_24"
         android:hint="Email"
+        android:layout_marginTop="40dp"
         android:padding="10dp"
         android:textColor="#ffffff"
         android:textColorHint="#ffffff"
-        app:layout_constraintBottom_toTopOf="@+id/et_pass"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.929" />
+
+        app:layout_constraintVertical_chainStyle ="spread_inside"
+        app:layout_constraintTop_toTopOf="@id/text_join"
+        app:layout_constraintBottom_toBottomOf="@id/user_pass" />
 
     <EditText
-        android:id="@+id/et_pass"
-        android:layout_width="280dp"
+        android:id="@+id/user_pass"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="228dp"
         android:background="@color/colorPrimary"
         android:drawableStart="@drawable/ic_baseline_lock_24"
         android:drawableLeft="@drawable/ic_baseline_lock_24"
@@ -55,16 +57,15 @@
         android:padding="10dp"
         android:textColor="#ffffff"
         android:textColorHint="#ffffff"
-        app:layout_constraintBottom_toTopOf="@+id/et_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+
+        app:layout_constraintVertical_chainStyle ="spread_inside"
+        app:layout_constraintTop_toTopOf="@id/user_id"
+        app:layout_constraintBottom_toBottomOf="@id/user_name"
+         />
 
     <EditText
-        android:id="@+id/et_name"
-        android:layout_width="280dp"
+        android:id="@+id/user_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@color/colorPrimary"
@@ -75,17 +76,15 @@
         android:padding="10dp"
         android:textColor="#ffffff"
         android:textColorHint="#ffffff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
-        tools:ignore="MissingConstraints" />
+
+        app:layout_constraintVertical_chainStyle ="spread_inside"
+        app:layout_constraintTop_toTopOf="@id/user_pass"
+        app:layout_constraintBottom_toBottomOf="@id/radioGroup"
+         />
 
     <Button
         android:id="@+id/btn_register"
-        android:layout_width="280dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@color/colorPrimary"
@@ -93,36 +92,52 @@
         android:textColor="#ffffff"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.676" />
 
-    <RadioButton
-        android:id="@+id/radioButton"
-        android:layout_width="138dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="68dp"
-        android:text="Men"
+        app:layout_constraintVertical_bias="0.8"
+        app:layout_constraintVertical_chainStyle ="spread_inside"
+        app:layout_constraintTop_toTopOf="@id/radioGroup"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.581"
-        tools:ignore="MissingConstraints" />
+         />
 
-    <RadioButton
-        android:id="@+id/radioButton2"
-        android:layout_width="141dp"
-        android:layout_height="41dp"
-        android:layout_marginEnd="64dp"
-        android:text="Woman"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.581"
-        tools:ignore="MissingConstraints" />
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintVertical_chainStyle ="spread"
+        app:layout_constraintTop_toTopOf="@id/user_name"
+        app:layout_constraintBottom_toBottomOf="@id/btn_register"
+        >
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="138dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="68dp"
+            android:text="Men"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.581"
+            tools:ignore="MissingConstraints" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="141dp"
+            android:layout_height="41dp"
+            android:layout_marginEnd="64dp"
+            android:text="Woman"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.581"
+            tools:ignore="MissingConstraints" />
+
+    </RadioGroup>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

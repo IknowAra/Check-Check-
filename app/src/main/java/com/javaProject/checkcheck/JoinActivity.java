@@ -5,6 +5,8 @@ import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 public class JoinActivity extends AppCompatActivity {
         @Override
     protected void onCreate(Bundle savedInstanceState) {
