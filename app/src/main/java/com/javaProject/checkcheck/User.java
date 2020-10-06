@@ -5,17 +5,15 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class User{
     public String email;
-    public String password;
     public String userName;
 
     public User(){
 
     }
 
-    public User(String userName, String email, String password){
+    public User(String userName, String email   ){
         this.userName = userName;
         this.email = email;
-        this.password = password;
 
     }
 
@@ -35,18 +33,10 @@ public class User{
         this.email = email;
     }
 
-    public String getPassword(){
-        return password;
-    }
-
-    public void setPassword(String password){
-        this.password = password;
-    }
     public String toString() {
         return "User{" +
                 "userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 '}';
     }
 }

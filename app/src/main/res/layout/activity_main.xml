@@ -38,7 +38,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/btn_register"
+        android:id="@+id/btn_gojoin"
         android:layout_width="195dp"
         android:layout_height="38dp"
         android:background="#00ff0000"
