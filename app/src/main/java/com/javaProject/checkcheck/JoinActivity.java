@@ -1,5 +1,6 @@
 package com.javaProject.checkcheck;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 
 public class JoinActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth;
+    private FirebaseAuth userdata;
 
     private EditText editTextEmail;
     private EditText editTextPassword;
@@ -29,7 +30,7 @@ public class JoinActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
 
-        mAuth = FirebaseAuth.getInstance();
+        userdata = FirebaseAuth.getInstance();
         editTextEmail = (EditText)findViewById(R.id.user_id);
         editTextPassword = (EditText)findViewById(R.id.user_pass);
         Button btn_join = (Button)findViewById(R.id.btn_register);
@@ -42,13 +43,14 @@ public class JoinActivity extends AppCompatActivity {
     }
 
     private void createUser(String email, String password){
-        mAuth.createUserWithEmailAndPassword(email, password)
+        userdata.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-
+                            FirebaseUser user = userdata.getCurrentUser();
+                            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                            startActivity(intent);
                         } else {
 
                         }
