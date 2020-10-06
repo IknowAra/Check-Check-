@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="280dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:id="@+id/drawer"
+    android:background="#5559b4">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#5559b4"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="298dp"
+            android:src="@drawable/ic_baseline_dday"></ImageView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="368dp"
+            android:src="@drawable/ic_baseline_calender"></ImageView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="438dp"
+            android:src="@drawable/ic_baseline_note_add_24"></ImageView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="270dp"
+            android:background="#80ffffff"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="340dp"
+            android:background="#80ffffff"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="410dp"
+            android:background="#80ffffff"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="480dp"
+            android:background="#80ffffff"></LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:fontFamily="@font/baloo"
+            android:text="HELLO"
+            android:textColor="#ffffff"
+            android:textSize="16dp"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="85dp"
+            android:layout_marginLeft="94dp"
+            android:layout_marginRight="85dp"
+            android:layout_marginTop="80dp"
+            android:text="이가람 님"
+            android:textColor="#ffffff"
+            android:textSize="28dp"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="130dp"
+            android:fontFamily="@font/baloo"
+            android:text="하루하루 기록하면서 꼼꼼하게 체크하세요"
+            android:textColor="#ffffff"
+            android:textSize="14dp"></TextView>
+
+        <TextView
+            android:id="@+id/nav_ex"
+            android:layout_width="81dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="298dp"
+            android:fontFamily="@font/baloo"
+            android:onClick="OnClick"
+            android:text="D-day"
+            android:textColor="#ffffff"
+            android:textSize="17sp"></TextView>
+
+        <TextView
+            android:id="@+id/nav_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="368dp"
+            android:fontFamily="@font/baloo"
+            android:onClick="OnClick"
+            android:text="CALENDER"
+            android:textColor="#ffffff"
+            android:textSize="17sp"></TextView>
+
+        <TextView
+            android:id="@+id/nav_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="438dp"
+            android:fontFamily="@font/baloo"
+            android:onClick="OnClick"
+            android:text="MEMO"
+            android:textColor="#ffffff"
+            android:textSize="17sp"></TextView>
+
+        <TextView
+            android:id="@+id/nav_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="550dp"
+            android:onClick="OnClick"
+            android:text="로그아웃"
+            android:textColor="#ffffff"
+            android:textSize="15dp"></TextView>
+    </RelativeLayout>
+
+</LinearLayout>
