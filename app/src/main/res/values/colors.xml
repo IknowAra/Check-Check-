@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#FF7F00</color><!--전체적인 색감-->
-    <color name="colorPrimaryDark">#00ff0000</color><!--상단바 색-->
+    <color name="colorPrimaryDark">#000000</color><!--상단바 색-->
     <color name="colorAccent">#a5ceb3</color><!--커서 색-->
 </resources>

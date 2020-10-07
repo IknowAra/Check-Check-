@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:id="@+id/drawer"
     android:layout_width="280dp"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-    android:id="@+id/drawer"
-    android:background="#5559b4">
+    android:background="#5559b4"
+    android:gravity="center"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -71,15 +72,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginEnd="85dp"
-            android:layout_marginLeft="94dp"
-            android:layout_marginRight="85dp"
-            android:layout_marginTop="80dp"
-            android:text="이가람 님"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="75dp"
+            android:layout_marginStart="84dp"
+            android:layout_marginTop="77dp"
+            android:foregroundGravity="center_vertical|center|center_horizontal"
+            android:gravity="center"
+            android:text="이가람 "
             android:textColor="#ffffff"
-            android:textSize="28dp"></TextView>
+            android:textSize="40dp"></TextView>
 
         <TextView
             android:layout_width="wrap_content"
