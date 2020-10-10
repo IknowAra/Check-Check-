@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity {
-
     private FirebaseAuth userdata;
     private DrawerLayout drawerLayout;
     private View drawerView;
@@ -22,8 +21,8 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         userdata = FirebaseAuth.getInstance();
+
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         drawerView = (View)findViewById(R.id.drawer);
 
@@ -43,6 +42,7 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             }
         });
+
         TextView logout = (TextView)findViewById(R.id.nav_logout);
         logout.setOnClickListener(new View.OnClickListener(){
             @Override

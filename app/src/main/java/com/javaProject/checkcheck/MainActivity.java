@@ -15,11 +15,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth userdata;
     private EditText inputEmail;
     private EditText inputPass;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = userdata.getCurrentUser();
+//        updateUI(currentUser);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -60,13 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        TextView logout = (TextView)findViewById(R.id.nav_logout);
-        logout.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                userdata.getInstance().signOut();
-            }
-        });
+
 
     }
 }
