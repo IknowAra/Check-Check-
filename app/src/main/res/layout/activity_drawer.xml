@@ -60,6 +60,7 @@
             android:background="#80ffffff"></LinearLayout>
 
         <TextView
+            android:id="@+id/hello"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -70,17 +71,14 @@
             android:textSize="16dp"></TextView>
 
         <TextView
+            android:id="@+id/realName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="75dp"
-            android:layout_marginStart="84dp"
-            android:layout_marginTop="77dp"
-            android:foregroundGravity="center_vertical|center|center_horizontal"
+
+            android:layout_below="@+id/hello"
+            android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:text="이가람 "
+            android:text="이가람"
             android:textColor="#ffffff"
             android:textSize="40dp"></TextView>
 
@@ -88,8 +86,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="130dp"
+
             android:fontFamily="@font/baloo"
+            android:layout_below="@+id/realName"
             android:text="하루하루 기록하면서 꼼꼼하게 체크하세요"
             android:textColor="#ffffff"
             android:textSize="14dp"></TextView>

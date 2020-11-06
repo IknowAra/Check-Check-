@@ -21,7 +21,7 @@
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/user_id"
-        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintVertical_bias="0.1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread"
         tools:ignore="MissingConstraints" />
@@ -31,18 +31,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="40dp"
         android:background="@color/colorPrimary"
         android:drawableStart="@drawable/ic_baseline_email_24"
         android:drawableLeft="@drawable/ic_baseline_email_24"
-        android:hint="Email"
-        android:layout_marginTop="40dp"
+        android:hint="EMAIL"
         android:padding="10dp"
         android:textColor="#ffffff"
         android:textColorHint="#ffffff"
 
-        app:layout_constraintVertical_chainStyle ="spread_inside"
+        app:layout_constraintBottom_toBottomOf="@id/user_pass"
         app:layout_constraintTop_toTopOf="@id/text_join"
-        app:layout_constraintBottom_toBottomOf="@id/user_pass" />
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        tools:layout_editor_absoluteX="50dp" />
 
     <EditText
         android:id="@+id/user_pass"
@@ -58,10 +59,30 @@
         android:textColor="#ffffff"
         android:textColorHint="#ffffff"
 
-        app:layout_constraintVertical_chainStyle ="spread_inside"
+        app:layout_constraintBottom_toBottomOf="@id/confirm_pass"
         app:layout_constraintTop_toTopOf="@id/user_id"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        tools:layout_editor_absoluteX="50dp" />
+
+    <EditText
+        android:id="@+id/confirm_pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/colorPrimary"
+        android:drawableStart="@drawable/ic_reload"
+        android:drawableLeft="@drawable/ic_reload"
+        android:hint="PASSWORD AGAIN"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff"
+
         app:layout_constraintBottom_toBottomOf="@id/user_name"
-         />
+        app:layout_constraintTop_toTopOf="@id/user_pass"
+
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        tools:layout_editor_absoluteX="50dp" />
 
     <EditText
         android:id="@+id/user_name"
@@ -77,10 +98,10 @@
         android:textColor="#ffffff"
         android:textColorHint="#ffffff"
 
-        app:layout_constraintVertical_chainStyle ="spread_inside"
-        app:layout_constraintTop_toTopOf="@id/user_pass"
         app:layout_constraintBottom_toBottomOf="@id/radioGroup"
-         />
+        app:layout_constraintTop_toTopOf="@id/confirm_pass"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        tools:layout_editor_absoluteX="50dp" />
 
     <Button
         android:id="@+id/btn_register"
@@ -93,7 +114,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
 
-        app:layout_constraintVertical_bias="0.8"
+        app:layout_constraintVertical_bias="0.9"
         app:layout_constraintVertical_chainStyle ="spread_inside"
         app:layout_constraintTop_toTopOf="@id/radioGroup"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -105,34 +126,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:layout_marginBottom="40dp"
+
         app:layout_constraintVertical_chainStyle ="spread"
-        app:layout_constraintTop_toTopOf="@id/user_name"
+        app:layout_constraintTop_toTopOf="@id/confirm_pass"
         app:layout_constraintBottom_toBottomOf="@id/btn_register"
         >
 
         <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="138dp"
+            android:id="@+id/man"
+            android:layout_width="130dp"
             android:layout_height="40dp"
             android:layout_marginStart="68dp"
             android:text="Men"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.581"
+            app:layout_constraintVertical_bias="0.45"
             tools:ignore="MissingConstraints" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="141dp"
+            android:id="@+id/woman"
+            android:layout_width="130dp"
             android:layout_height="41dp"
             android:layout_marginEnd="64dp"
             android:text="Woman"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.581"
+            app:layout_constraintVertical_bias="0.45"
             tools:ignore="MissingConstraints" />
 
     </RadioGroup>
