@@ -17,11 +17,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseUser currentUser = null;
     private FirebaseAuth auth = null;
     private String user_email = null;
+    private String user_id = null;
 
 
     @Override
@@ -53,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this,"로그인 성공",Toast.LENGTH_SHORT).show();
                                 Intent goHome = new Intent(getApplicationContext(), HomeActivity.class);
                                 startActivity(goHome);
+                                finish();
                             }else {
                                 String error = task.getException().getMessage();
                                 Toast.makeText(LoginActivity.this,"error :"+error,Toast.LENGTH_SHORT).show();
@@ -65,6 +70,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+
 
 
         //회원가입
@@ -81,8 +88,41 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
 
-//    @Override
+        currentUser = auth.getCurrentUser();
+
+        if(currentUser != null){
+            currentUser = auth.getCurrentUser();
+            user_email=currentUser.getEmail();
+            user_id = currentUser.getUid();
+            sendToHome();
+        }
+    }
+
+    private void sendToHome(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("User").document(user_id.toString()).get().addOnCompleteListener(this, new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+
+                    Toast.makeText(LoginActivity.this,"환영합니다",Toast.LENGTH_SHORT).show();
+
+                    Intent goHome = new Intent(getApplicationContext(), HomeActivity.class);
+                    startActivity(goHome);
+                    finish();
+                }else {
+                    String error = task.getException().getMessage();
+                    Toast.makeText(LoginActivity.this,"error :"+error,Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+    //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
 //        super.onCreate(savedInstanceState);
