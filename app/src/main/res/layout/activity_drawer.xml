@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="438dp"
-            android:src="@drawable/ic_baseline_note_add_24"></ImageView>
+            android:src="@drawable/ic_baseline_settings_24"></ImageView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -125,7 +125,7 @@
             android:layout_marginTop="438dp"
             android:fontFamily="@font/baloo"
             android:onClick="OnClick"
-            android:text="MEMO"
+            android:text="Setting"
             android:textColor="#ffffff"
             android:textSize="17sp"></TextView>
 

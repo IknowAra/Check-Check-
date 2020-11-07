@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <activity
+            android:name="com.javaProject.checkcheck.Group"
+            android:label="@string/title_activity_group"></activity>
+    </application>
+</manifest>
