@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,7 +52,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        Button btn_open = (Button)findViewById(R.id.btn_open);
+        ImageView btn_open = (ImageView)findViewById(R.id.btn_open);
         btn_open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
