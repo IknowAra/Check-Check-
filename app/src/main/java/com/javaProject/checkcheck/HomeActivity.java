@@ -69,6 +69,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        TextView Dday = (TextView)findViewById(R.id.nav_ex);
+        Dday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), GroupActivity.class));
+            }
+        });
+
         TextView logout = (TextView)findViewById(R.id.nav_logout);
         logout.setOnClickListener(new View.OnClickListener(){
             @Override
