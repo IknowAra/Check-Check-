@@ -7,7 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    //이곳에 포함을 시켜라 즉 연결
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/mainpic"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,6 +33,7 @@
             android:id="@+id/dateNow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/toGroup"
             android:layout_width="200dp"
