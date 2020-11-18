@@ -61,6 +61,13 @@ public class HomeActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(drawerView);
             }
         });
+        Button btn_to = (Button)findViewById(R.id.toGroup);
+        btn_to.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), GroupActivity.class));
+            }
+        });
 
         drawerLayout.setDrawerListener(listener);
         drawerView.setOnTouchListener(new View.OnTouchListener() {
@@ -70,13 +77,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        TextView Dday = (TextView)findViewById(R.id.nav_ex);
-        Dday.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), GroupActivity.class));
-            }
-        });
+//        TextView Dday = (TextView)findViewById(R.id.nav_ex);
+//        Dday.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(), GroupActivity.class));
+//            }
+//        });
 
         TextView logout = (TextView)findViewById(R.id.nav_logout);
         logout.setOnClickListener(new View.OnClickListener(){
