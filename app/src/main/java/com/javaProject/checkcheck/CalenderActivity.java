@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 
-public class CalenderActivity {
+public class CalenderActivity extends AppCompatActivity {
     CalendarView calendar;
 
     @Override
