@@ -22,8 +22,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class JoinActivity extends AppCompatActivity {
@@ -96,11 +97,14 @@ public class JoinActivity extends AppCompatActivity {
     }
 
     private void adduser(){
+        List<String> a = new ArrayList<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        HashMap<String, String> userMap = new HashMap<>();
+        HashMap<String, Object> userMap = new HashMap<>();
         userMap.put("email",userEmail);
         userMap.put("name",userName);
         userMap.put("gender",userGender);
+        userMap.put("current", a);
+        userMap.put("group","");
         db.collection("User").document(user_id.toString()).set(userMap).addOnCompleteListener(this, new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

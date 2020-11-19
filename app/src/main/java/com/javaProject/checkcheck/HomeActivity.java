@@ -95,6 +95,13 @@ public class HomeActivity extends AppCompatActivity {
                 finish();
             }
         });
+        TextView toCal = findViewById(R.id.nav_cal);
+        toCal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), CalenderActivity.class));
+            }
+        });
     }
     DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
         @Override
