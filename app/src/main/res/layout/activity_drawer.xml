@@ -94,7 +94,7 @@
             android:textSize="14dp"></TextView>
 
         <TextView
-            android:id="@+id/nav_ex"
+            android:id="@+id/nav_dday"
             android:layout_width="81dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="44dp"
@@ -106,7 +106,7 @@
             android:textSize="17sp"></TextView>
 
         <TextView
-            android:id="@+id/nav_info"
+            android:id="@+id/nav_cal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="44dp"
@@ -118,7 +118,7 @@
             android:textSize="17sp"></TextView>
 
         <TextView
-            android:id="@+id/nav_help"
+            android:id="@+id/nav_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="44dp"
