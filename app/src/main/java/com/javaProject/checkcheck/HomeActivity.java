@@ -54,6 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         ImageView btn_open = (ImageView)findViewById(R.id.btn_open);
+
         btn_open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
