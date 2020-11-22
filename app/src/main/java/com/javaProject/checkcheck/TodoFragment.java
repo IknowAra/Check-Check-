@@ -4,23 +4,31 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
 public class TodoFragment extends Fragment implements View.OnClickListener {
     private FirebaseAuth auth;
     private String user_id = null;
     private String current_group = null;
+    private String current_todo = null;
     public TodoFragment() {
 
     }
@@ -50,9 +58,29 @@ public class TodoFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         auth = FirebaseAuth.getInstance();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser user = auth.getCurrentUser();
         user_id = user.getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("User").document(user_id).get().addOnCompleteListener( docu -> {
+            if(docu.isSuccessful() && docu.getResult() != null){
+                //Group 도큐먼트 값 구하기
+                current_group = docu.getResult().getString("group");
+                db.collection("Todo").whereEqualTo("user",user_id).whereEqualTo("group",current_group).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for(QueryDocumentSnapshot document : task.getResult()){
+                                //Todo 도큐먼트 값 구하기
+                                current_todo = document.getId();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+
 
         AlertDialog.Builder ad = new AlertDialog.Builder(getActivity());
 
@@ -65,7 +93,8 @@ public class TodoFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String value = et.getText().toString();
-//                db.collection("Todo").ad
+                db.collection("Todo").document(current_todo).update("todo", FieldValue.arrayUnion(value));
+
                 dialog.dismiss();
             }
         });
