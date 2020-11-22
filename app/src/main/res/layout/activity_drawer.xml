@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer"
     android:layout_width="280dp"
     android:layout_height="match_parent"
@@ -35,6 +36,20 @@
             android:layout_marginTop="438dp"
             android:src="@drawable/ic_baseline_settings_24"></ImageView>
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="125dp"
+            android:layout_height="143dp"
+            android:layout_above="@+id/realName"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginEnd="78dp"
+            android:layout_marginStart="77dp"
+            android:layout_marginTop="28dp"
+            app:srcCompat="@drawable/review_user" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -60,38 +75,19 @@
             android:background="#80ffffff"></LinearLayout>
 
         <TextView
-            android:id="@+id/hello"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="60dp"
-            android:fontFamily="@font/baloo"
-            android:text="HELLO"
-            android:textColor="#ffffff"
-            android:textSize="16dp"></TextView>
-
-        <TextView
             android:id="@+id/realName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_below="@+id/hello"
-            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@+id/nav_dday"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="94dp"
+            android:layout_marginEnd="86dp"
+            android:layout_marginStart="82dp"
             android:gravity="center"
             android:text="이가람"
             android:textColor="#ffffff"
             android:textSize="40dp"></TextView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-
-            android:fontFamily="@font/baloo"
-            android:layout_below="@+id/realName"
-            android:text="하루하루 기록하면서 꼼꼼하게 체크하세요"
-            android:textColor="#ffffff"
-            android:textSize="14dp"></TextView>
 
         <TextView
             android:id="@+id/nav_dday"
