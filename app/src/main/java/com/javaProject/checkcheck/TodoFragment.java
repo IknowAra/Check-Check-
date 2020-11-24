@@ -62,26 +62,6 @@ public class TodoFragment extends Fragment implements View.OnClickListener {
         user_id = user.getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection("User").document(user_id).get().addOnCompleteListener( docu -> {
-            if(docu.isSuccessful() && docu.getResult() != null){
-                //Group 도큐먼트 값 구하기
-                current_group = docu.getResult().getString("group");
-                db.collection("Todo").whereEqualTo("user",user_id).whereEqualTo("group",current_group).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            for(QueryDocumentSnapshot document : task.getResult()){
-                                //Todo 도큐먼트 값 구하기
-                                current_todo = document.getId();
-                            }
-                        }
-                    }
-                });
-            }
-        });
-
-
-
         AlertDialog.Builder ad = new AlertDialog.Builder(getActivity());
 
         ad.setTitle("TODO");       // 제목 설정
@@ -92,6 +72,26 @@ public class TodoFragment extends Fragment implements View.OnClickListener {
         ad.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                db.collection("User").document(user_id).get().addOnCompleteListener( docu -> {
+                    if(docu.isSuccessful() && docu.getResult() != null){
+                        //Group 도큐먼트 값 구하기
+                        current_group = docu.getResult().getString("group");
+                        db.collection("Todo").whereEqualTo("user",user_id).whereEqualTo("group",current_group).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if(task.isSuccessful()){
+                                    for(QueryDocumentSnapshot document : task.getResult()){
+                                        //Todo 도큐먼트 값 구하기
+                                        current_todo = document.getId();
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
+
                 String value = et.getText().toString();
                 db.collection("Todo").document(current_todo).update("todo", FieldValue.arrayUnion(value));
 

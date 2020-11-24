@@ -11,10 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
+
             android:name=".GroupActivity"
             android:label="@string/title_activity_group" >
         </activity>
         <activity android:name=".HomeActivity" />
+        <activity android:name=".AddActivity" />
         <activity android:name=".CalenderActivity" />
         <activity android:name=".LoginActivity" >
             <intent-filter>
