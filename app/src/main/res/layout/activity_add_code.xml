@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/add5">
+    android:background="@drawable/add5"
+    tools:context=".AddCodeActivity">
 
 
     <TextView
@@ -16,7 +17,7 @@
         android:fontFamily="@font/yatra_one"
         android:text="Enter Code"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/GroupName"
+        app:layout_constraintBottom_toTopOf="@+id/GroupCode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,13 +25,14 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/GroupName"
+        android:id="@+id/GroupCode"
         android:layout_width="330dp"
         android:layout_height="45dp"
         android:layout_marginTop="244dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Code Name"
+        android:hint="Code Name"
+        android:textColorHint="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
@@ -48,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/GroupName"
+        app:layout_constraintTop_toBottomOf="@+id/GroupCode"
         tools:ignore="MissingConstraints" />
 
     <Button
