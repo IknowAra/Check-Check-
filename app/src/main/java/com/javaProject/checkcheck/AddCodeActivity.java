@@ -71,6 +71,7 @@ public class AddCodeActivity extends AppCompatActivity {
                             }
                         }
                     });
+                    
                 }else{
                     Toast.makeText(AddCodeActivity.this,"코드를 입력해주세요",Toast.LENGTH_SHORT).show();
                 }
