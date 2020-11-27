@@ -62,13 +62,13 @@ public class HomeActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(drawerView);
             }
         });
-        Button btn_to = (Button)findViewById(R.id.toGroup);
-        btn_to.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), AddCodeActivity.class));
-            }
-        });
+       // Button btn_to = (Button)findViewById(R.id.toGroup);
+        //btn_to.setOnClickListener(new View.OnClickListener() {
+         //   @Override
+         //   public void onClick(View view) {
+    //            startActivity(new Intent(getApplicationContext(), AddCodeActivity.class));
+  //          }
+//        });
 
         drawerLayout.setDrawerListener(listener);
         drawerView.setOnTouchListener(new View.OnTouchListener() {
