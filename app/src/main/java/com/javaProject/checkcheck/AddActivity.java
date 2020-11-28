@@ -17,7 +17,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -53,22 +55,38 @@ public class AddActivity extends AppCompatActivity {
             public void onClick(View v) {
                 List<String> a = new ArrayList<>();
                 a.add(current_uid);
-
+                String rancode = ranCode().toString();
                 if(!TextUtils.isEmpty(editInfo.getText().toString()) && !TextUtils.isEmpty(editTitle.getText().toString())){
                     HashMap<String, Object> userMap = new HashMap<>();
                     userMap.put("name",editTitle.getText().toString());
                     userMap.put("info",editInfo.getText().toString());
                     userMap.put("member",a);
-                    userMap.put("code",ranCode().toString());
+                    userMap.put("code",rancode);
 
+                    //멤버에 자신이 추가된 그룹생성
                     db.collection("Group").document().set(userMap).addOnCompleteListener( task -> {
                         if (task.isSuccessful()){
+                            //생성한 그룹의 도큐먼트 아이디 가져오기
+                            db.collection("Group").whereEqualTo("code",rancode).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if(task.isSuccessful()) {
+                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                            //생성한 그룹의 도큐먼트를 유저의 current 리스트에 추가
+                                            db.collection("User").document(current_uid).update("current", FieldValue.arrayUnion(document.getId()));
+                                            makeTodo(document.getId(),current_uid);
+                                        }
+                                    }
+                                }
+                            });
                             Toast.makeText(AddActivity.this,"그룹이 추가되었습니다",Toast.LENGTH_SHORT).show();
                             finish();
                         }else {
                             Toast.makeText(AddActivity.this,"다시 시도해주세요",Toast.LENGTH_SHORT).show();
                         }
                     });
+
+
                 }else{
                     Toast.makeText(AddActivity.this,"모두 입력해주세요",Toast.LENGTH_SHORT).show();
                 }
@@ -93,5 +111,25 @@ public class AddActivity extends AppCompatActivity {
         });
 
         return sb;
+    }
+    protected void makeTodo(String groupId, String userId) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        List<String> a = new ArrayList<>();
+        List<String> b = new ArrayList<>();
+        HashMap<String, Object> userMap = new HashMap<>();
+        userMap.put("group", groupId);
+        userMap.put("user", userId);
+        userMap.put("todo", a);
+        userMap.put("finish", b);
+
+        db.collection("Todo").document().set(userMap).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                return;
+            }else{
+                String error = task.getException().getMessage();
+                Toast.makeText(AddActivity.this,"데이터 저장 실패 : "+error,Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

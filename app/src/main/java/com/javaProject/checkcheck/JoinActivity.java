@@ -25,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 
 public class JoinActivity extends AppCompatActivity {
@@ -98,6 +99,11 @@ public class JoinActivity extends AppCompatActivity {
 
     private void adduser(){
         List<String> a = new ArrayList<>();
+        Random random = new Random();
+        int randomInt = random.nextInt(6);
+        if(userGender.equals("Woman")){
+            randomInt += 6;
+        }
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         HashMap<String, Object> userMap = new HashMap<>();
         userMap.put("email",userEmail);
@@ -105,6 +111,8 @@ public class JoinActivity extends AppCompatActivity {
         userMap.put("gender",userGender);
         userMap.put("current", a);
         userMap.put("group","");
+        userMap.put("userImg",randomInt+"");
+
         db.collection("User").document(user_id.toString()).set(userMap).addOnCompleteListener(this, new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
