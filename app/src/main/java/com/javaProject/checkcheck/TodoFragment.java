@@ -64,6 +64,7 @@ public class TodoFragment extends Fragment implements View.OnClickListener {
 
         ImageView open = (ImageView) view.findViewById(R.id.add_btn);
         ImageView back = (ImageView) view.findViewById(R.id.back1);
+        Log.d("",open.toString());
         open.setOnClickListener(this);
         back.setOnClickListener(this);
 
@@ -97,13 +98,12 @@ public class TodoFragment extends Fragment implements View.OnClickListener {
                             tv.setBackgroundColor(R.color.colorPrimary);
                             lin2.addView(tv);
                             fini.add(tv);
-//                            tv.setOnClickListener();
+                            tv.setOnClickListener(this);
                         }
                     }
                 });
             }
         });
-        remain.get(0).setText("엥 이게 뭐야");
         Log.d("",remain.toString());
 
         return view;
@@ -163,6 +163,7 @@ public class TodoFragment extends Fragment implements View.OnClickListener {
         }else if(v.getId() == R.id.back1){
             getActivity().onBackPressed();
         }
+        //else if(v.getId() == )
 
 
 
