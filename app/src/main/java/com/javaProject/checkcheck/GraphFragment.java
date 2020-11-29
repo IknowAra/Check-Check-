@@ -1,5 +1,6 @@
 package com.javaProject.checkcheck;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,57 +9,137 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link GraphFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import org.eazegraph.lib.charts.BarChart;
+import org.eazegraph.lib.charts.PieChart;
+import org.eazegraph.lib.models.BarModel;
+import org.eazegraph.lib.models.PieModel;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 public class GraphFragment extends Fragment {
+    PieChart chart1;
+    BarChart chart2;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private FirebaseAuth auth;
+    private String user_id = null;
+    private String current_group = null;
 
     public GraphFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment GraphFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static GraphFragment newInstance(String param1, String param2) {
-        GraphFragment fragment = new GraphFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_graph, container, false);
+        View view = inflater.inflate(R.layout.fragment_graph, container, false);
+
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        user_id = user.getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        String[] colors = new String[]{ "#CDA67F", "#ffffff","#000000", "#333333", "#999999","#FA5901","#318EB8","#CDA67F"};
+
+
+        chart1 = (PieChart) view.findViewById(R.id.tab1_chart_1);
+        chart2 = (BarChart)view.findViewById(R.id.tab1_chart_2);
+        chart1.clearChart();
+        chart2.clearChart();
+
+
+
+        db.collection("User").document(user_id).get().addOnCompleteListener( docu -> {
+            if (docu.isSuccessful() && docu.getResult() != null) {
+                //Group 도큐먼트 값 구하기
+                current_group = docu.getResult().getString("group");
+                String userName = docu.getResult().getString("name");
+
+                db.collection("Group").document(current_group).get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        List<String> a = (List<String>) task.getResult().get("member");
+
+                        int sum = 0;
+                        for(int i = 0; i<a.size(); i++){
+                            int finalI = i;
+                            db.collection("User").document(a.get(i)).get().addOnCompleteListener(userdata ->{
+                                String name = userdata.getResult().getString("name");
+                                db.collection("Todo").whereEqualTo("user",a.get(finalI)).whereEqualTo("group",current_group).get().addOnCompleteListener(task3 ->{
+                                    for (QueryDocumentSnapshot document : task3.getResult()) {
+                                        List<String> todo = (List<String>) document.get("todo");
+                                        List<String> fin = (List<String>) document.get("finish");
+                                        if(fin.size() != 0){
+                                            double persen = fin.size()/ (double)(todo.size()+fin.size())*100;
+                                            chart1.addPieSlice(new PieModel(name, (int)persen, Color.parseColor(colors[finalI])));
+                                        }else{
+                                            chart1.addPieSlice(new PieModel(name, 0, Color.parseColor(colors[finalI])));
+                                        }
+
+                                    }
+                                });
+
+                            });
+                        }
+                        db.collection("Todo").whereEqualTo("group",current_group).get().addOnCompleteListener(task2 ->{
+                            int finSum = 0;
+                            int toSum = 0;
+                            for (QueryDocumentSnapshot docus : task2.getResult()) {
+                                List<String> l1 = (List<String>) docus.get("todo");
+                                List<String> l2 = (List<String>) docus.get("finish");
+                                toSum += l1.size();
+                                finSum += l2.size();
+
+                                if(docus.get("user").equals(user_id)){
+                                    if(l2.size() != 0){
+                                        double persen = l2.size()/ (double)(l1.size()+l2.size())*100;
+                                        chart2.addBar(new BarModel(userName, (int)persen, 0xFFFA5901));
+                                    }else{
+                                        chart2.addBar(new BarModel(userName, 0, 0xFFFA5901));
+                                    }
+                                }
+                            }
+                            if(finSum != 0){
+                                double groupPer = finSum/ (double)(finSum+toSum)*100;
+                                chart2.addBar(new BarModel("그룹 평균", (int)groupPer, 0xFFFA5901));
+                            }else{
+                                chart2.addBar(new BarModel("그룹 평균",0, 0xFFFA5901));
+                            }
+
+                        });
+                    }
+                });
+            }
+        });
+
+        chart1.startAnimation();
+        chart2.startAnimation();
+        return view;
     }
+
+    // 막대 차트 설정
+//    private void setBarChart(List<itemModel> itemList2) {
+//
+//        chart2.clearChart();
+//
+//        chart2.addBar(new BarModel("12", 10f, 0xFF56B7F1));
+//        chart2.addBar(new BarModel("13", 10f, 0xFF56B7F1));
+//        chart2.addBar(new BarModel("14", 10f, 0xFF56B7F1));
+//        chart2.addBar(new BarModel("15", 20f, 0xFF56B7F1));
+//        chart2.addBar(new BarModel("16", 10f, 0xFF56B7F1));
+//        chart2.addBar(new BarModel("17", 10f, 0xFF56B7F1));
+//
+//        chart2.startAnimation();
+//
+//    }
 }
