@@ -3,4 +3,5 @@
     <color name="colorPrimary">#FA5901</color><!--전체적인 색감-->
     <color name="colorPrimaryDark">#000000</color><!--상단바 색-->
     <color name="colorAccent">#318EB8</color><!--커서 색-->
+    <color name="TodoBack">#D89290</color>
 </resources>

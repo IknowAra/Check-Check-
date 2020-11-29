@@ -103,31 +103,31 @@ public class HomeActivity extends AppCompatActivity {
                     case "2":
                         userImgArea.setImageResource(R.drawable.man3);
                         break;
-                    case "4":
+                    case "3":
                         userImgArea.setImageResource(R.drawable.man4);
                         break;
-                    case "5":
+                    case "4":
                         userImgArea.setImageResource(R.drawable.man5);
                         break;
-                    case "6":
+                    case "5":
                         userImgArea.setImageResource(R.drawable.man6);
                         break;
-                    case "7":
+                    case "6":
                         userImgArea.setImageResource(R.drawable.woman1);
                         break;
-                    case "8":
+                    case "7":
                         userImgArea.setImageResource(R.drawable.woman2);
                         break;
-                    case "9":
+                    case "8":
                         userImgArea.setImageResource(R.drawable.woman3);
                         break;
-                    case "10":
+                    case "9":
                         userImgArea.setImageResource(R.drawable.woman4);
                         break;
-                    case "11":
+                    case "10":
                         userImgArea.setImageResource(R.drawable.woman5);
                         break;
-                    case "12":
+                    case "11":
                         userImgArea.setImageResource(R.drawable.woman6);
                         break;
 
@@ -145,9 +145,9 @@ public class HomeActivity extends AppCompatActivity {
                             List<String> a = new ArrayList<>();
                             a = (List<String>) task.getResult().get("current");
                             db.collection("User").document(user_id).update("group", a.get(finalI));
+                            startActivity(new Intent(getApplicationContext(), GroupActivity.class));
                         }
                     });
-                    startActivity(new Intent(getApplicationContext(), GroupActivity.class));
                 }
             });
         }
@@ -359,9 +359,9 @@ public class HomeActivity extends AppCompatActivity {
                             List<String> a = new ArrayList<>();
                             a = (List<String>) task.getResult().get("current");
                             db.collection("User").document(user_id).update("group", a.get(finalI));
+                            startActivity(new Intent(getApplicationContext(), GroupActivity.class));
                         }
                     });
-                    startActivity(new Intent(getApplicationContext(), GroupActivity.class));
                 }
             });
         }
