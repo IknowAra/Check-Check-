@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="298dp"
-            android:src="@drawable/ic_baseline_dday"></ImageView>
+            android:src="@drawable/ic_baseline_info"></ImageView>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
             android:layout_marginStart="79dp"
             android:layout_marginTop="26dp"
             android:layout_marginEnd="76dp"
-            android:layout_marginBottom="17dp"
+            android:layout_marginBottom="13dp"
             app:srcCompat="@drawable/man1" />
 
         <LinearLayout
@@ -81,23 +81,23 @@
             android:layout_alignBottom="@+id/nav_dday"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="94dp"
+            android:layout_marginBottom="100dp"
             android:layout_marginEnd="86dp"
             android:layout_marginStart="82dp"
             android:gravity="center"
-            android:text="사용자"
+            android:text="leegaram"
             android:textColor="#ffffff"
-            android:textSize="40dp"></TextView>
+            android:textSize="25dp"></TextView>
 
         <TextView
             android:id="@+id/nav_dday"
-            android:layout_width="81dp"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
             android:layout_marginLeft="44dp"
             android:layout_marginTop="298dp"
             android:fontFamily="@font/baloo"
             android:onClick="OnClick"
-            android:text="D-day"
+            android:text="INSTRUCTION"
             android:textColor="#ffffff"
             android:textSize="17sp"></TextView>
 
@@ -121,7 +121,7 @@
             android:layout_marginTop="438dp"
             android:fontFamily="@font/baloo"
             android:onClick="OnClick"
-            android:text="Setting"
+            android:text="INFO"
             android:textColor="#ffffff"
             android:textSize="17sp"></TextView>
 
