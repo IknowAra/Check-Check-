@@ -50,7 +50,7 @@ public class GraphFragment extends Fragment {
         FirebaseUser user = auth.getCurrentUser();
         user_id = user.getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        String[] colors = new String[]{ "#CDA67F", "#ffffff","#000000", "#333333", "#999999","#FA5901","#318EB8","#CDA67F"};
+        String[] colors = new String[]{ "#8F332C", "#CEDB70","#DB635A", "#448DDB", "#55718F","#8546DB","#ADDB8C","#DB543B"};
         //색 지정
 
         chart1 = (PieChart) view.findViewById(R.id.tab1_chart_1);
