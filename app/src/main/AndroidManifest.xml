@@ -19,6 +19,7 @@
         <activity android:name=".AddActivity" />
         <activity android:name=".AddCodeActivity" />
         <activity android:name=".CalenderActivity" />
+        <activity android:name=".InstructionActivity"/>
         <activity android:name=".LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -67,7 +67,7 @@
             android:id="@+id/realName"
             android:layout_width="136dp"
             android:layout_height="61dp"
-            android:layout_alignBottom="@+id/nav_dday"
+            android:layout_alignBottom="@+id/nav_inst"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="110dp"
@@ -80,7 +80,7 @@
             android:textSize="25dp"></TextView>
 
         <TextView
-            android:id="@+id/nav_dday"
+            android:id="@+id/nav_inst"
             android:layout_width="wrap_content"
             android:layout_height="46dp"
             android:layout_marginLeft="44dp"

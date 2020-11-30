@@ -72,19 +72,7 @@ public class GraphFragment extends Fragment {
                     if (task.isSuccessful() && task.getResult() != null) {
                         List<String> a = (List<String>) task.getResult().get("member");
 
-                        db.collection("Todo").whereEqualTo("user",user_id).whereEqualTo("group",current_group).get().addOnCompleteListener(result ->{
-                            for (QueryDocumentSnapshot docus : result.getResult()) {
-                                List<String> todo = (List<String>) docus.get("todo");
-                                List<String> fin = (List<String>) docus.get("finish");
-                                if(fin.size() != 0 ){
-                                    double persen = fin.size()/ (double)(todo.size()+fin.size())*100;
-                                    chart1.addPieSlice(new PieModel(user_name, (int)persen, Color.parseColor(colors[0])));
-                                }else{
-                                    chart1.addPieSlice(new PieModel(user_name, 0, Color.parseColor(colors[0])));
-                                }
-                            }
-                        });
-                        int sum = 0;
+
                         for(int i = 0; i<a.size(); i++){
                             int finalI = i;
                             db.collection("User").document(a.get(i)).get().addOnCompleteListener(userdata ->{
@@ -105,7 +93,7 @@ public class GraphFragment extends Fragment {
                                 });
 
                             });
-                        } // 원형 그래프 //
+                        } // 원형 그래프
 
                         db.collection("Todo").whereEqualTo("group",current_group).get().addOnCompleteListener(task2 ->{//
                             int finSum = 0;

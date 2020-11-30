@@ -218,7 +218,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
+        //로그아웃
         TextView logout = (TextView)findViewById(R.id.nav_logout);
         logout.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -229,11 +229,20 @@ public class HomeActivity extends AppCompatActivity {
                 finish();
             }
         });
+        //캘린더
         TextView toCal = findViewById(R.id.nav_cal);
         toCal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), CalenderActivity.class));
+            }
+        });
+
+        TextView toInfo = findViewById(R.id.nav_inst);
+        toInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), InstructionActivity.class));
             }
         });
     }
