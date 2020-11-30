@@ -48,25 +48,24 @@
         android:layout_height="35dp"
         android:fontFamily="@font/aldrich"
         android:gravity="center_vertical"
-        android:layout_marginLeft="3dp"
         android:text="새로운 그룹을 만들때 사용하는 버튼 입니다!"
         android:textColor="#414141"
         android:textSize="17dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
-        app:layout_constraintStart_toStartOf="@+id/imageView6"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.044"
+        app:layout_constraintVertical_bias="0.069"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="359dp"
         android:layout_height="35dp"
+        android:layout_marginLeft="3dp"
         android:fontFamily="@font/aldrich"
         android:gravity="center_vertical"
-        android:layout_marginLeft="3dp"
         android:text="기존 그룹에 코드로 입장할때 사용하는 버튼입니다!"
         android:textColor="#525252"
         android:textSize="17dp"
@@ -75,7 +74,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.154"
+        app:layout_constraintVertical_bias="0.179"
         tools:ignore="MissingConstraints" />
 
     <ImageView
@@ -98,20 +97,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.563"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.069"
         app:srcCompat="@drawable/add_gro" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="204dp"
+        android:layout_marginTop="148dp"
         android:text="기타 문의사항"
         android:textColor="#525252"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.772"
+        app:layout_constraintHorizontal_bias="0.798"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8"
         tools:ignore="MissingConstraints" />
@@ -121,11 +120,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="s2019w06@e-mirim.hs.kr\ns2019w13@e-mirim.hs.kr"
+        android:textColor="#525252"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="#525252"
-        app:layout_constraintHorizontal_bias="0.967"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.016" />
 </androidx.constraintlayout.widget.ConstraintLayout>
