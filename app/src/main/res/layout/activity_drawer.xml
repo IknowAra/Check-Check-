@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="44dp"
             android:layout_marginTop="368dp"
-            android:fontFamily="@font/baloo"
+            android:fontFamily="@font/yatra_one"
             android:onClick="OnClick"
             android:text="CALENDER"
             android:textColor="#ffffff"

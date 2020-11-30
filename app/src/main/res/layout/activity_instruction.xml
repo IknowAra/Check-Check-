@@ -94,11 +94,12 @@
         android:id="@+id/imageView6"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="392dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.563"
         app:srcCompat="@drawable/add_gro" />
 
     <TextView
@@ -109,9 +110,11 @@
         android:text="기타 문의사항"
         android:textColor="#525252"
         android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.772"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="238dp" />
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView10"
