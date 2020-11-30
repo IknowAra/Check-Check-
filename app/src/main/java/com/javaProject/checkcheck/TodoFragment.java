@@ -74,6 +74,8 @@ public class TodoFragment extends Fragment implements View.OnClickListener, Adap
 
 
         View view = inflater.inflate(R.layout.fragment_todo, container, false);
+        ImageView back = (ImageView) view.findViewById(R.id.back1);
+        back.setOnClickListener(this);
 
         itemET = view.findViewById(R.id.item_edit_text);
         btn = view.findViewById(R.id.add_btn);
@@ -123,14 +125,31 @@ public class TodoFragment extends Fragment implements View.OnClickListener, Adap
                 });
             }
         }else if(v.getId() == R.id.clear_btn){
-            items.clear();
-            adapter.notifyDataSetChanged();
 
-            db.collection("Todo").whereEqualTo("user",user_id).whereEqualTo("group",current_group).get().addOnCompleteListener( tasks ->{
-                for(QueryDocumentSnapshot document : tasks.getResult()){
-                    db.collection("Todo").document(document.getId()).update("todo", FieldValue.arrayRemove());
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("Todo 요소 모두 삭제");
+            builder.setMessage("현재 할일들을 모두 삭제하시겠습니까?");
+
+            builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    items.clear();
+                    adapter.notifyDataSetChanged();
+
+                    db.collection("Todo").whereEqualTo("user",user_id).whereEqualTo("group",current_group).get().addOnCompleteListener( tasks ->{
+                        for(QueryDocumentSnapshot document : tasks.getResult()){
+                            db.collection("Todo").document(document.getId()).update("todo", FieldValue.arrayRemove());
+                        }
+                    });
                 }
             });
+            builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.show();
 
         }else if(v.getId() == R.id.back1){
             getActivity().onBackPressed();

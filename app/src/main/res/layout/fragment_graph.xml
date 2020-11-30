@@ -19,7 +19,7 @@
             android:layout_height="20dp"
             android:autoSizeTextType="uniform"
             android:gravity="center_horizontal"
-            android:text="우리 그룹의 1등은?"/>
+            android:text="그룹 달성률"/>
         <org.eazegraph.lib.charts.PieChart
             android:id="@+id/tab1_chart_1"
             android:layout_width="match_parent"

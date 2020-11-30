@@ -30,6 +30,7 @@ public class GraphFragment extends Fragment {
     private FirebaseAuth auth;
     private String user_id = null;
     private String current_group = null;
+    private String user_name = null;
 
     public GraphFragment() {
         // Required empty public constructor
@@ -64,12 +65,25 @@ public class GraphFragment extends Fragment {
             if (docu.isSuccessful() && docu.getResult() != null) {
                 //Group 도큐먼트 값 구하기
                 current_group = docu.getResult().getString("group");
+                user_name = docu.getResult().getString("name");
                 String userName = docu.getResult().getString("name");
 
                 db.collection("Group").document(current_group).get().addOnCompleteListener(task -> { //
                     if (task.isSuccessful() && task.getResult() != null) {
                         List<String> a = (List<String>) task.getResult().get("member");
 
+                        db.collection("Todo").whereEqualTo("user",user_id).whereEqualTo("group",current_group).get().addOnCompleteListener(result ->{
+                            for (QueryDocumentSnapshot docus : result.getResult()) {
+                                List<String> todo = (List<String>) docus.get("todo");
+                                List<String> fin = (List<String>) docus.get("finish");
+                                if(fin.size() != 0 ){
+                                    double persen = fin.size()/ (double)(todo.size()+fin.size())*100;
+                                    chart1.addPieSlice(new PieModel(user_name, (int)persen, Color.parseColor(colors[0])));
+                                }else{
+                                    chart1.addPieSlice(new PieModel(user_name, 0, Color.parseColor(colors[0])));
+                                }
+                            }
+                        });
                         int sum = 0;
                         for(int i = 0; i<a.size(); i++){
                             int finalI = i;
@@ -77,15 +91,16 @@ public class GraphFragment extends Fragment {
                                 String name = userdata.getResult().getString("name");
                                 db.collection("Todo").whereEqualTo("user",a.get(finalI)).whereEqualTo("group",current_group).get().addOnCompleteListener(task3 ->{
                                     for (QueryDocumentSnapshot document : task3.getResult()) {
-                                        List<String> todo = (List<String>) document.get("todo");
-                                        List<String> fin = (List<String>) document.get("finish");
-                                        if(fin.size() != 0){
-                                            double persen = fin.size()/ (double)(todo.size()+fin.size())*100;
-                                            chart1.addPieSlice(new PieModel(name, (int)persen, Color.parseColor(colors[finalI])));
-                                        }else{
-                                            chart1.addPieSlice(new PieModel(name, 0, Color.parseColor(colors[finalI])));
+                                        if(!document.get("user").equals(user_id)){
+                                            List<String> todo = (List<String>) document.get("todo");
+                                            List<String> fin = (List<String>) document.get("finish");
+                                            if(fin.size() != 0 ){
+                                                double persen = fin.size()/ (double)(todo.size()+fin.size())*100;
+                                                chart1.addPieSlice(new PieModel(name, (int)persen, Color.parseColor(colors[finalI])));
+                                            }else{
+                                                chart1.addPieSlice(new PieModel(name, 0, Color.parseColor(colors[finalI])));
+                                            }
                                         }
-
                                     }
                                 });
 

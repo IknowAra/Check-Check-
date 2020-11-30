@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -84,6 +85,14 @@ public class AddCodeActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(AddCodeActivity.this,"코드를 입력해주세요",Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        ImageView backB = findViewById(R.id.back_btn2);
+        backB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
