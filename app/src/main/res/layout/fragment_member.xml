@@ -41,6 +41,7 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     android:gravity="center_vertical|right">
+
                     <ImageView
                         android:id="@+id/remove"
                         android:layout_width="50dp"
@@ -50,7 +51,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:srcCompat="@drawable/back" />
+                        app:srcCompat="@drawable/ic_baseline_delete_group" />
                 </LinearLayout>
             </LinearLayout>
 
