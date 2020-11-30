@@ -22,7 +22,7 @@ public class CalenderActivity extends AppCompatActivity {
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth ) {
-                String Date = dayOfMonth + "-" + (month+1) + "-" + year;
+                    String Date = dayOfMonth + "-" + (month+1) + "-" + year;
 
             }
         });

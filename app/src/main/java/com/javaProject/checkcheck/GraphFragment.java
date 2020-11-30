@@ -51,7 +51,7 @@ public class GraphFragment extends Fragment {
         user_id = user.getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String[] colors = new String[]{ "#CDA67F", "#ffffff","#000000", "#333333", "#999999","#FA5901","#318EB8","#CDA67F"};
-
+        //색 지정
 
         chart1 = (PieChart) view.findViewById(R.id.tab1_chart_1);
         chart2 = (BarChart)view.findViewById(R.id.tab1_chart_2);
@@ -66,7 +66,7 @@ public class GraphFragment extends Fragment {
                 current_group = docu.getResult().getString("group");
                 String userName = docu.getResult().getString("name");
 
-                db.collection("Group").document(current_group).get().addOnCompleteListener(task -> {
+                db.collection("Group").document(current_group).get().addOnCompleteListener(task -> { //
                     if (task.isSuccessful() && task.getResult() != null) {
                         List<String> a = (List<String>) task.getResult().get("member");
 
@@ -90,8 +90,9 @@ public class GraphFragment extends Fragment {
                                 });
 
                             });
-                        }
-                        db.collection("Todo").whereEqualTo("group",current_group).get().addOnCompleteListener(task2 ->{
+                        } // 원형 그래프 //
+
+                        db.collection("Todo").whereEqualTo("group",current_group).get().addOnCompleteListener(task2 ->{//
                             int finSum = 0;
                             int toSum = 0;
                             for (QueryDocumentSnapshot docus : task2.getResult()) {
@@ -115,17 +116,15 @@ public class GraphFragment extends Fragment {
                             }else{
                                 chart2.addBar(new BarModel("그룹 평균",0, 0xFFFA5901));
                             }
-
                         });
                     }
                 });
             }
         });
-
         chart1.startAnimation();
         chart2.startAnimation();
         return view;
-    }
+    } // 막대그래프//
 
     // 막대 차트 설정
 //    private void setBarChart(List<itemModel> itemList2) {

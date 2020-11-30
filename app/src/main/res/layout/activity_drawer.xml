@@ -29,12 +29,6 @@
             android:layout_marginTop="368dp"
             android:src="@drawable/ic_baseline_calender"></ImageView>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="438dp"
-            android:src="@drawable/ic_baseline_settings_24"></ImageView>
 
         <ImageView
             android:id="@+id/imageView"
@@ -66,12 +60,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="410dp"
-            android:background="#80ffffff"></LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="480dp"
             android:background="#80ffffff"></LinearLayout>
 
         <TextView
@@ -114,18 +102,6 @@
             android:textSize="17sp"></TextView>
 
         <TextView
-            android:id="@+id/nav_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="44dp"
-            android:layout_marginTop="438dp"
-            android:fontFamily="@font/baloo"
-            android:onClick="OnClick"
-            android:text="INFO"
-            android:textColor="#ffffff"
-            android:textSize="17sp"></TextView>
-
-        <TextView
             android:id="@+id/nav_logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -135,7 +111,7 @@
             android:onClick="OnClick"
             android:text="로그아웃"
             android:textColor="#ffffff"
-            android:textSize="15dp"></TextView>
+            android:textSize="20dp"></TextView>
     </RelativeLayout>
 
 </LinearLayout>
