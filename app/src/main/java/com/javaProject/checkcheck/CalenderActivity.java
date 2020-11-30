@@ -26,7 +26,8 @@ public class CalenderActivity extends AppCompatActivity {
 
             }
         });
-
     }
-
 }
+
+//public abstract void onSelectedDayChange ( CalendarView view, int 년, int 월, int dayOfMonth)
+//선택한 요일 변경시 호출됩니다.
