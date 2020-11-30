@@ -22,9 +22,10 @@
 
             <ImageView
                 android:id="@+id/back1"
-                android:layout_width="50dp"
-                android:layout_height="0dp"
-                android:layout_marginLeft="10dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="3dp"
                 android:background="@drawable/back"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/clear_btn"
@@ -34,10 +35,10 @@
 
             <ImageView
                 android:id="@+id/clear_btn"
-                android:layout_width="50dp"
-                android:layout_height="0dp"
+                android:layout_width="45dp"
+                android:layout_height="44dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/add_gro"
+                android:background="@drawable/ic_baseline_delete_check"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/back1"
@@ -62,12 +63,13 @@
 
             <Button
                 android:id="@+id/add_btn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="9dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@drawable/button_background"
+                android:fontFamily="@font/fredoka_one"
                 android:text="Add"
-                android:textColor="#EBF7E3"
-                android:background="#66B032"></Button>
+                android:textColor="#EBF7E3"></Button>
 
         </LinearLayout>
 

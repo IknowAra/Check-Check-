@@ -66,6 +66,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.594"
         tools:ignore="OnClick" />
+
     <ImageView
         android:id="@+id/back_btn2"
         android:layout_width="45dp"
@@ -74,9 +75,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.007"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.018"
         app:srcCompat="@drawable/back" />
 </androidx.constraintlayout.widget.ConstraintLayout>
