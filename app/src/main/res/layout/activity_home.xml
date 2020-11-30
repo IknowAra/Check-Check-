@@ -60,9 +60,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center_vertical">
+            android:layout_height="450dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/group1"
@@ -81,11 +81,12 @@
                     android:layout_gravity="center"
                     android:layout_weight="0.8"
                     android:background="@drawable/button_background"
+                    android:fontFamily="@font/days_one"
                     android:gravity="left|center"
                     android:paddingLeft="20dp"
                     android:text="그룹 이름"
                     android:textColor="#ffffff"
-                    android:textSize="20dp"
+                    android:textSize="22dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="@id/radioGroup"
@@ -97,12 +98,14 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
+                    android:fontFamily="@font/baloo_da"
                     android:gravity="center"
                     android:text="100%"
                     android:textColor="#E46520"
-                    android:textSize="30dp" />
+                    android:textSize="32.5dp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/group2"
                 android:layout_width="match_parent"
@@ -120,11 +123,12 @@
                     android:layout_gravity="center"
                     android:layout_weight="0.8"
                     android:background="@drawable/button_background"
+                    android:fontFamily="@font/days_one"
                     android:gravity="left|center"
                     android:paddingLeft="20dp"
                     android:text="그룹 이름"
                     android:textColor="#ffffff"
-                    android:textSize="20dp"
+                    android:textSize="22dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="@id/radioGroup"
@@ -136,13 +140,15 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
+                    android:fontFamily="@font/baloo_da"
                     android:gravity="center"
                     android:text="100%"
                     android:textColor="#E46520"
-                    android:textSize="30dp"
+                    android:textSize="32.5dp"
                     tools:ignore="DuplicateIds" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/group3"
                 android:layout_width="match_parent"
@@ -160,11 +166,12 @@
                     android:layout_gravity="center"
                     android:layout_weight="0.8"
                     android:background="@drawable/button_background"
+                    android:fontFamily="@font/days_one"
                     android:gravity="left|center"
                     android:paddingLeft="20dp"
                     android:text="그룹 이름"
                     android:textColor="#ffffff"
-                    android:textSize="20dp"
+                    android:textSize="23dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="@id/radioGroup"
@@ -176,11 +183,13 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
+                    android:fontFamily="@font/baloo_da"
                     android:gravity="center"
                     android:text="100%"
                     android:textColor="#E46520"
-                    android:textSize="30dp" />
+                    android:textSize="32.5dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/group4"
                 android:layout_width="match_parent"
@@ -198,11 +207,12 @@
                     android:layout_gravity="center"
                     android:layout_weight="0.8"
                     android:background="@drawable/button_background"
+                    android:fontFamily="@font/days_one"
                     android:gravity="left|center"
                     android:paddingLeft="20dp"
                     android:text="그룹 이름"
                     android:textColor="#ffffff"
-                    android:textSize="20dp"
+                    android:textSize="22dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="@id/radioGroup"
@@ -214,12 +224,14 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
+                    android:fontFamily="@font/baloo_da"
                     android:gravity="center"
                     android:text="100%"
                     android:textColor="#E46520"
-                    android:textSize="30dp" />
+                    android:textSize="32.5dp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/group5"
                 android:layout_width="match_parent"
@@ -237,25 +249,28 @@
                     android:layout_gravity="center"
                     android:layout_weight="0.8"
                     android:background="@drawable/button_background"
+                    android:fontFamily="@font/days_one"
                     android:gravity="left|center"
                     android:paddingLeft="20dp"
                     android:text="그룹 이름"
                     android:textColor="#ffffff"
-                    android:textSize="20dp"
+                    android:textSize="22dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="@id/radioGroup"
                     app:layout_constraintVertical_bias="0.9"
                     app:layout_constraintVertical_chainStyle="spread_inside" />
+
                 <TextView
                     android:id="@+id/tx_persent5"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
+                    android:fontFamily="@font/baloo_da"
                     android:gravity="center"
                     android:text="100%"
                     android:textColor="#E46520"
-                    android:textSize="30dp"
+                    android:textSize="32.5dp"
                     tools:ignore="DuplicateIds" />
             </LinearLayout>
         </LinearLayout>

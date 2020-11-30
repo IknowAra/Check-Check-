@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".GraphFragment">
+    tools:context=".GraphFragment"
+    android:background="@drawable/graph_bac">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -13,42 +14,47 @@
         android:orientation="vertical"
         android:gravity="center_horizontal"
         >
+
         <TextView
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:autoSizeTextType="uniform"
             android:gravity="center_horizontal"
-            android:text="우리 그룹의 1등은?"/>
+            android:text="\n\n" />
+
         <org.eazegraph.lib.charts.PieChart
             android:id="@+id/tab1_chart_1"
             android:layout_width="match_parent"
-            android:layout_height="256dp"
+            android:layout_height="278dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
             android:padding="10dp"
             app:egBarWidth="20dp"
             app:egEnableScroll="true"
             app:egFixedBarWidth="true"
             app:egLegendHeight="40dp"
             app:egShowDecimal="true" />
+
         <TextView
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="15dp"
             android:autoSizeTextType="uniform"
             android:gravity="center_horizontal"
-            android:text="나의 달성률 | 그룹 평균 달성률"/>
+            android:textColor="#555555"
+            android:text="나의 달성률 | 그룹 평균 달성률"
+            android:textSize="15dp" />
 
         <org.eazegraph.lib.charts.BarChart
             android:id="@+id/tab1_chart_2"
             android:layout_width="match_parent"
-            android:layout_height="256dp"
-            android:layout_marginLeft="10dp"
-
-            android:layout_marginRight="10dp"
+            android:layout_height="293dp"
             android:layout_marginBottom="20dp"
+
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:padding="10dp"
             app:egBarWidth="20dp"
             app:egEnableScroll="true"
