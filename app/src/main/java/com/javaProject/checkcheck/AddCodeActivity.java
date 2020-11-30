@@ -69,8 +69,6 @@ public class AddCodeActivity extends AppCompatActivity {
                                             db.collection("User").document(current_uid).update("current", FieldValue.arrayUnion(document.getId()));
                                             //todo data 만들어주는 메서드
                                             makeTodo(document.getId(), current_uid);
-                                            finish();
-                                            Toast.makeText(AddCodeActivity.this, "그룹에 가입했습니다", Toast.LENGTH_SHORT).show();
                                         }
                                     }else {
                                         Toast.makeText(AddCodeActivity.this,"이미 가입한 그룹입니다",Toast.LENGTH_SHORT).show();
@@ -103,6 +101,8 @@ public class AddCodeActivity extends AppCompatActivity {
 
         db.collection("Todo").document().set(userMap).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
+                finish();
+                Toast.makeText(AddCodeActivity.this, "그룹에 가입했습니다", Toast.LENGTH_SHORT).show();
                 return;
             }else{
                 String error = task.getException().getMessage();

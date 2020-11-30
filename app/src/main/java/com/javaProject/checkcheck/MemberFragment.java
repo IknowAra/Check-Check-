@@ -1,7 +1,10 @@
 package com.javaProject.checkcheck;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -11,11 +14,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
@@ -148,7 +156,50 @@ public class MemberFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.remove){
-            //탈퇴 기능
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("그룹 탈퇴");
+            builder.setMessage("정말로 그룹을 탈퇴하시겠습니까?");
+            builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    auth = FirebaseAuth.getInstance();
+                    FirebaseUser user = auth.getCurrentUser();
+                    user_id = user.getUid();
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                    db.collection("User").document(user_id).get().addOnCompleteListener( docu -> {
+                        if(docu.isSuccessful() && docu.getResult() != null){
+                            current_group = docu.getResult().getString("group");
+                            db.collection("User").document(user_id).update("current", FieldValue.arrayRemove(current_group));
+                            db.collection("Todo").whereEqualTo("user",user_id).whereEqualTo("group",current_group).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                            db.collection("Todo").document(document.getId()).delete();
+                                        }
+                                    }
+                                }
+                            });
+                            db.collection("Group").document(current_group).update("member", FieldValue.arrayRemove(user_id));
+                        }
+                    });
+                    Toast.makeText(getContext(), "그룹을 탈퇴하였습니다.", Toast.LENGTH_LONG).show();
+                    getActivity().onBackPressed();
+                    dialog.dismiss();
+                }
+            });
+            builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.show();
+
+
+
 
         }else if(v.getId() == R.id.back2){
             getActivity().onBackPressed();

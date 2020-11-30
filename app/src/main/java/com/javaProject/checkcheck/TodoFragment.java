@@ -15,12 +15,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,10 +39,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class TodoFragment extends Fragment implements View.OnClickListener {
+public class TodoFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
     private FirebaseAuth auth;
     private String user_id = null;
     private String current_group = null;
+
+    private EditText itemET;
+    private Button btn;
+    private ImageView clear;
+    private ListView itemList;
+
+    private ArrayList <String> items;
+    private ArrayAdapter<String> adapter;
     public TodoFragment() {
 
     }
@@ -60,112 +72,105 @@ public class TodoFragment extends Fragment implements View.OnClickListener {
         user_id = user.getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+
         View view = inflater.inflate(R.layout.fragment_todo, container, false);
 
-        ImageView open = (ImageView) view.findViewById(R.id.add_btn);
-        ImageView back = (ImageView) view.findViewById(R.id.back1);
-        Log.d("",open.toString());
-        open.setOnClickListener(this);
-        back.setOnClickListener(this);
-
-        ArrayList<TextView> remain = new ArrayList<>();
-        ArrayList<TextView> fini = new ArrayList<>();
-        LinearLayout lin1 = view.findViewById(R.id.ll1);
-        LinearLayout lin2 = view.findViewById(R.id.ll2);
+        itemET = view.findViewById(R.id.item_edit_text);
+        btn = view.findViewById(R.id.add_btn);
+        itemList = view.findViewById(R.id.item_list);
+        clear = view.findViewById(R.id.clear_btn);
 
         db.collection("User").document(user_id).get().addOnCompleteListener( docu -> {
             if (docu.isSuccessful() && docu.getResult() != null) {
-                //Group 도큐먼트 값 구하기
                 current_group = docu.getResult().getString("group");
                 db.collection("Todo").whereEqualTo("user",user_id).whereEqualTo("group",current_group).get().addOnCompleteListener( task2 -> {
                     for (QueryDocumentSnapshot document : task2.getResult()) {
-                        List<String> todo = (List<String>) document.get("todo");
-                        List<String> fin = (List<String>) document.get("finish");
-                        for(int i = 0; i<todo.size(); i++){
-                            TextView tv = new TextView(getContext());
-                            tv.setText(todo.get(i));
-                            tv.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);
-                            tv.setTextSize(30);
-                            tv.setBackgroundColor(R.color.colorPrimary);
-                            lin1.addView(tv);
-                            remain.add(tv);
-                        }
-                        for(int i = 0; i<fin.size(); i++){
-                            TextView tv = new TextView(getContext());
-                            tv.setText(fin.get(i));
-                            tv.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);
-                            tv.setTextSize(30);
-                            tv.setBackgroundColor(R.color.colorPrimary);
-                            lin2.addView(tv);
-                            fini.add(tv);
-                            tv.setOnClickListener(this);
-                        }
+                        items = (ArrayList<String>) document.get("todo");
+                        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, items);
+                        itemList.setAdapter(adapter);
+
+                        clear.setOnClickListener(this);
+                        btn.setOnClickListener(this);
+                        itemList.setOnItemClickListener(this);
                     }
                 });
             }
         });
-        Log.d("",remain.toString());
-
         return view;
     }
 
 
     @Override
     public void onClick(View v) {
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        user_id = user.getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         if(v.getId() == R.id.add_btn){
-            auth = FirebaseAuth.getInstance();
-            FirebaseUser user = auth.getCurrentUser();
-            user_id = user.getUid();
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            String itemEntered = itemET.getText().toString();
+            if(itemEntered.equalsIgnoreCase("")) {
+                Toast.makeText(getActivity(), "할일을 입력해주세요", Toast.LENGTH_SHORT).show();
+                return;
+            }else{
+                adapter.add(itemEntered);
+                itemET.setText("");
 
-            AlertDialog.Builder ad = new AlertDialog.Builder(getActivity());
+                db.collection("Todo").whereEqualTo("user",user_id).whereEqualTo("group",current_group).get().addOnCompleteListener( tasks ->{
+                    for(QueryDocumentSnapshot document : tasks.getResult()){
+                        db.collection("Todo").document(document.getId()).update("todo", FieldValue.arrayUnion(itemEntered));
+                    }
+                });
+            }
+        }else if(v.getId() == R.id.clear_btn){
+            items.clear();
+            adapter.notifyDataSetChanged();
 
-            ad.setTitle("TODO");       // 제목 설정
-            ad.setMessage("해야할 일을 입력해주세요");   // 내용 설정
-            final EditText et = new EditText(getActivity());
-            ad.setView(et);
-
-            ad.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-                    db.collection("User").document(user_id).get().addOnCompleteListener( docu -> {
-                        if(docu.isSuccessful() && docu.getResult() != null){
-                            //Group 도큐먼트 값 구하기
-                            current_group = docu.getResult().getString("group");
-                            db.collection("Todo").whereEqualTo("user",user_id).whereEqualTo("group",current_group).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if(task.isSuccessful()){
-                                        for(QueryDocumentSnapshot document : task.getResult()){
-                                            //Todo 도큐먼트 값 구하기
-                                            String value = et.getText().toString();
-                                            db.collection("Todo").document(document.getId()).update("todo", FieldValue.arrayUnion(value));
-                                        }
-                                    }
-                                }
-                            });
-                        }
-                    });
-
-                    dialog.dismiss();
+            db.collection("Todo").whereEqualTo("user",user_id).whereEqualTo("group",current_group).get().addOnCompleteListener( tasks ->{
+                for(QueryDocumentSnapshot document : tasks.getResult()){
+                    db.collection("Todo").document(document.getId()).update("todo", FieldValue.arrayRemove());
                 }
             });
-            ad.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
-            ad.show();
+
         }else if(v.getId() == R.id.back1){
             getActivity().onBackPressed();
+
         }
-        //else if(v.getId() == )
 
+    }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        user_id = user.getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Todo");
+        builder.setMessage("완료하시겠습니까?");
+        builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                db.collection("Todo").whereEqualTo("user",user_id).whereEqualTo("group",current_group).get().addOnCompleteListener( tasks ->{
+                    for(QueryDocumentSnapshot document : tasks.getResult()){
+                        db.collection("Todo").document(document.getId()).update("todo", FieldValue.arrayRemove(items.get(position)));
+                        db.collection("Todo").document(document.getId()).update("finish", FieldValue.arrayUnion(items.get(position)));
+                        Toast.makeText(getActivity(), " *완료* "+items.get(position) , Toast.LENGTH_SHORT).show();
+                        items.remove(position);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
     }
 }

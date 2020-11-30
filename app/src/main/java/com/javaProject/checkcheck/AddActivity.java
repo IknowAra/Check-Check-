@@ -79,8 +79,6 @@ public class AddActivity extends AppCompatActivity {
                                     }
                                 }
                             });
-                            Toast.makeText(AddActivity.this,"그룹이 추가되었습니다",Toast.LENGTH_SHORT).show();
-                            finish();
                         }else {
                             Toast.makeText(AddActivity.this,"다시 시도해주세요",Toast.LENGTH_SHORT).show();
                         }
@@ -125,6 +123,8 @@ public class AddActivity extends AppCompatActivity {
 
         db.collection("Todo").document().set(userMap).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
+                finish();
+                Toast.makeText(AddActivity.this,"그룹이 추가되었습니다",Toast.LENGTH_SHORT).show();
                 return;
             }else{
                 String error = task.getException().getMessage();
